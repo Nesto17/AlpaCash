@@ -1,5 +1,5 @@
 import pandas as pd
-import boto3
+import awswrangler as wr
 import pyarrow
 
 from prefect import flow, task
@@ -27,8 +27,9 @@ def fetch_tickers() -> set():
     nyse_tickers = list(nyse.iloc[:, 0])
     return(set(nasdaq_tickers + nyse_tickers))
 
+
 @task(log_prints=True)
-def fetch_bars(tickers) -> pd.DataFrame:
+def extract(tickers) -> pd.DataFrame:
     hist_client = StockHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
 
     def getStockHistoricalData(client: StockHistoricalDataClient, start_date, end_date = datetime.today()):
@@ -69,31 +70,48 @@ def fetch_bars(tickers) -> pd.DataFrame:
                 "vwap": bar.vwap
             }
             df.loc[len(df)] = entry
-    
+
+    return df
+
+
+@task(log_prints=True)
+def transform(df: pd.DataFrame) -> pd.DataFrame:
+    df['year'] = df['timestamp'].dt.year
+    df['month'] = df['timestamp'].dt.month
+    df['day'] = df['timestamp'].dt.day
+
     return df
 
 
 @task(log_prints=True)
 def parquetize_and_write(df: pd.DataFrame) -> Path:
-    path = Path(f"data/stocks.parquet")
+    path = Path(f"../data/stocks.parquet")
     df.to_parquet(path, engine = "pyarrow", compression = "gzip")
     return path
 
 
 @task(log_prints=True)
-def export_to_s3(path: Path) -> None:
-    s3 = boto3.client("s3")
-    bucket_name = "s3-alpaca-stock-data"
-    s3.upload_file(path, bucket_name, "historical/test.parquet.gzip")
+def load(df: pd.DataFrame) -> None:
+    glue_db_name = "alpaca_stocks_database"
+    glue_table_name = f"stocks_table_{datetime.now().year}_{datetime.now().month}"
+
+    wr.s3.to_parquet(
+        df = df,
+        path = "s3://s3-alpaca-stock-data/daily/",
+        dataset = True,
+        partition_cols = ["year", "month", "day"],
+        database = glue_db_name,
+        table = glue_table_name
+    )
     return
 
 
 @flow(name="Daily Data Ingestion", log_prints=True)
 def daily_data_ingestion_flow():
     tickers = fetch_tickers()
-    df = fetch_bars(tickers)
-    export_to_s3(parquetize_and_write(df))
+    df = extract(tickers)
+    load(transform(df))
 
 
 if __name__ == "__main__":
-    daily_data_ingestion_flow.serve(name = "Daily Deployment", cron = "5 4 * * 1-5")
+    daily_data_ingestion_flow.serve(name = "Daily Ingestion Deployment", cron = "5 4 * * 1-5")
