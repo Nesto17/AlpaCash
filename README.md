@@ -5,8 +5,10 @@ Include stocks data from:
 
 Roadmap:
 
-1. Batch-process historical stock data to Amazon S3 and Redshift
-2. Schedule batch-ingestion of daily stock data to Amazon S3 and Redshift
-3. Train forecasting model in Python and save the model to Amazon S3
-4. Create a Flask app that uses the model to predict upcoming forecasting for each stock
-5. Deploy
+1. Orchestrate batch data processing from API to S3
+2. Store historical data to S3
+3. Run transformation queries in Redshift
+4. Pull transformed data from Redshift, process ML training and evaluation. Save the model to S3
+5. Orchestrate ML operations
+6. Create a Flask app
+7. Deploy the app

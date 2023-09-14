@@ -1,8 +1,10 @@
 import pandas as pd
 import awswrangler as wr
+import boto3
 import pyarrow
 
 from prefect import flow, task
+from prefect.blocks.system import Secret
 
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.live import StockDataStream
@@ -10,13 +12,10 @@ from alpaca.data.requests import StockBarsRequest, StockTradesRequest
 from alpaca.data.timeframe import TimeFrame
 
 from pathlib import Path
-from dotenv import load_dotenv
-import os
 from datetime import datetime, timedelta
 
-load_dotenv()
-ALPACA_API_KEY = os.environ.get("ALPACA_API_KEY")
-ALPACA_SECRET_KEY = os.environ.get("ALPACA_SECRET_KEY")
+ALPACA_API_KEY = Secret.load("alpaca-api-key")
+ALPACA_SECRET_KEY = Secret.load("alpaca-secret-key")
 
 @task(log_prints=True)
 def fetch_tickers() -> set():
@@ -30,7 +29,7 @@ def fetch_tickers() -> set():
 
 @task(log_prints=True)
 def extract(tickers) -> pd.DataFrame:
-    hist_client = StockHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
+    hist_client = StockHistoricalDataClient(ALPACA_API_KEY.get(), ALPACA_SECRET_KEY.get())
 
     def getStockHistoricalData(client: StockHistoricalDataClient, start_date, end_date = datetime.today()):
         bar_request = StockBarsRequest(

@@ -1,8 +1,10 @@
 import pandas as pd
+import awswrangler as wr
 import boto3
 import pyarrow
 
-from pathlib import Path
+from prefect import flow, task
+
 from dotenv import load_dotenv
 import os
 from datetime import datetime
@@ -28,15 +30,18 @@ BAR_SCHEMA = {
     "vwap": "float64"
 }
 
-def yearly_ingestion(years):
-    hist_client = StockHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
-
+@task(log_prints=True)
+def fetch_tickers() -> set():
     nasdaq = pd.read_csv("https://s3-alpaca-stock-data.s3.us-west-1.amazonaws.com/tickers/nasdaq100.csv")
     nyse = pd.read_csv("https://s3-alpaca-stock-data.s3.us-west-1.amazonaws.com/tickers/nyse100.csv")
 
     nasdaq_tickers = list(nasdaq.iloc[:, 0])
     nyse_tickers = list(nyse.iloc[:, 0])
-    tickers = set(nasdaq_tickers + nyse_tickers)
+    return(set(nasdaq_tickers + nyse_tickers))
+
+@task(log_prints=True)
+def etl(tickers, years) -> None:
+    hist_client = StockHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
 
     def getStockHistoricalData(client: StockHistoricalDataClient, start_date, end_date):
         bar_request = StockBarsRequest(
@@ -48,9 +53,6 @@ def yearly_ingestion(years):
 
         res = client.get_stock_bars(bar_request)
         return(res)
-    
-    s3 = boto3.client("s3")
-    bucket_name = "s3-alpaca-stock-data"
 
     for year in years:
         start_time = time.time()
@@ -71,14 +73,33 @@ def yearly_ingestion(years):
                     "vwap": bar.vwap
                 }
                 df.loc[len(df)] = entry
+
+        df['year'] = df['timestamp'].dt.year
+        df['month'] = df['timestamp'].dt.month
+        df['day'] = df['timestamp'].dt.day
         
-        path = Path(f"data/{year}-stocks.parquet")
-        df.to_parquet(path, engine = "pyarrow", compression = "gzip")
-        s3.upload_file(path, bucket_name, f"historical/{year}-stocks.parquet.gzip")
+        glue_db_name = "alpaca_stocks_database"
+        glue_table_name = "stocks_table_historical"
+
+        wr.s3.to_parquet(
+            df = df,
+            path = "s3://s3-alpaca-stock-data/historical/",
+            dataset = True,
+            partition_cols = ["year"],
+            database = glue_db_name,
+            table = glue_table_name
+        )
 
         end_time = time.time()
         print(f"Runtime for year {year}: {end_time - start_time: .2f}")
 
+    return
+
+@flow(name="Yearly Data Ingestion Job", log_prints=True)
+def yearly_data_ingestion_flow():
+    years = [2022, 2021, 2020, 2019, 2018, 2017, 2016]
+    tickers = fetch_tickers()
+    etl(tickers, years)
+
 if __name__ == "__main__":
-    years = [2022, 2021, 2020]
-    yearly_ingestion(years)
+    yearly_data_ingestion_flow.serve(name = "Yearly Ingestion Deployment")
