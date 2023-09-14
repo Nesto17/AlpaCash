@@ -16,6 +16,14 @@ from datetime import datetime, timedelta
 
 ALPACA_API_KEY = Secret.load("alpaca-api-key")
 ALPACA_SECRET_KEY = Secret.load("alpaca-secret-key")
+AWS_ACCESS_KEY = Secret.load("aws-access-key")
+AWS_SECRET_KEY = Secret.load("aws-secret-key")
+
+boto3_session = boto3.Session(
+    aws_access_key_id = AWS_ACCESS_KEY,
+    aws_secret_access_key = AWS_SECRET_KEY,
+    region_name = "us-east-2"
+)
 
 @task(log_prints=True)
 def fetch_tickers() -> set():
@@ -100,7 +108,8 @@ def load(df: pd.DataFrame) -> None:
         dataset = True,
         partition_cols = ["year", "month", "day"],
         database = glue_db_name,
-        table = glue_table_name
+        table = glue_table_name,
+        boto3_session = boto3_session
     )
     return
 
