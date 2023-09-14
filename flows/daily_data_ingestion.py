@@ -20,8 +20,8 @@ AWS_ACCESS_KEY = Secret.load("aws-access-key")
 AWS_SECRET_KEY = Secret.load("aws-secret-key")
 
 boto3_session = boto3.Session(
-    aws_access_key_id = AWS_ACCESS_KEY,
-    aws_secret_access_key = AWS_SECRET_KEY,
+    aws_access_key_id = AWS_ACCESS_KEY.get(),
+    aws_secret_access_key = AWS_SECRET_KEY.get(),
     region_name = "us-east-2"
 )
 
