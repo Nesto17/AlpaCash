@@ -19,10 +19,9 @@ ALPACA_SECRET_KEY = Secret.load("alpaca-secret-key")
 AWS_ACCESS_KEY = Secret.load("aws-access-key")
 AWS_SECRET_KEY = Secret.load("aws-secret-key")
 
+
 @task(log_prints=True)
 def fetch_tickers() -> set():
-    print(AWS_ACCESS_KEY.get())
-    print(AWS_SECRET_KEY.get())
     nasdaq = pd.read_csv("https://s3-alpaca-stock-data.s3.us-west-1.amazonaws.com/tickers/nasdaq100.csv")
     nyse = pd.read_csv("https://s3-alpaca-stock-data.s3.us-west-1.amazonaws.com/tickers/nyse100.csv")
 
@@ -97,23 +96,22 @@ def parquetize_and_write(df: pd.DataFrame) -> Path:
 def load(df: pd.DataFrame) -> None:
     glue_db_name = "alpaca_stocks_database"
     glue_table_name = f"stocks_table_{datetime.now().year}_{datetime.now().month}"
-    bucket_name = "s3://s3-alpaca-stock-data/daily/"
-
+    
     aws_session = boto3.Session(
         aws_access_key_id = AWS_ACCESS_KEY.get(),
         aws_secret_access_key = AWS_SECRET_KEY.get(),
-        region_name = "us-west-2"
+        region_name = "us-west-1"
     )
 
     wr.s3.to_parquet(
         df = df,
-        path = bucket_name,
+        path = "s3://s3-alpaca-stock-data/daily/",
         dataset = True,
         partition_cols = ["year", "month", "day"],
         database = glue_db_name,
         table = glue_table_name,
         boto3_session = aws_session,
-        mode = "overwrite_partitions"
+        mode = "overwrite_partitions"  
     )
     return
 
