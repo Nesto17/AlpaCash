@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alpacash-prefect
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      flow: get-repo-info
+  template:
+    metadata:
+      labels:
+        flow: get-repo-info
+    spec:
+      containers:
+      - name: alpacash-prefect-container
+        image: ernestoast/alpacash-prefect
+        env:
+        - name: PREFECT_API_URL
+          value: xxxxxx
+        - name: PREFECT_API_KEY
+          value: xxxxxx
+        # Never pull the image because we're using a local image
+        imagePullPolicy: Never

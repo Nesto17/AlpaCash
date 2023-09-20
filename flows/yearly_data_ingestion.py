@@ -4,6 +4,7 @@ import boto3
 import pyarrow
 
 from prefect import flow, task
+from prefect.blocks.system import Secret
 
 from dotenv import load_dotenv
 import os
@@ -18,6 +19,8 @@ from alpaca.data.timeframe import TimeFrame
 load_dotenv()
 ALPACA_API_KEY = os.environ.get("ALPACA_API_KEY")
 ALPACA_SECRET_KEY = os.environ.get("ALPACA_SECRET_KEY")
+AWS_ACCESS_KEY = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 BAR_SCHEMA = {
     "symbol": str,
@@ -81,13 +84,21 @@ def etl(tickers, years) -> None:
         glue_db_name = "alpaca_stocks_database"
         glue_table_name = "stocks_table_historical"
 
+        aws_session = boto3.Session(
+            aws_access_key_id = AWS_ACCESS_KEY,
+            aws_secret_access_key = AWS_SECRET_KEY,
+            region_name = "us-west-1"
+        )
+
         wr.s3.to_parquet(
             df = df,
             path = "s3://s3-alpaca-stock-data/historical/",
             dataset = True,
-            partition_cols = ["year"],
+            partition_cols = ["year", "month", "day"],
             database = glue_db_name,
-            table = glue_table_name
+            table = glue_table_name,
+            boto3_session = aws_session,
+            mode = "overwrite_partitions"  
         )
 
         end_time = time.time()
