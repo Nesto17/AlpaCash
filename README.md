@@ -2,6 +2,8 @@
 
 AlpaCash is not something groundbreaking or anything, I created this project to expose myself to the realm of data engineering and ML-ops by making it as realistic and similar as possible to how industries handle data engineering problems. Thus, to put it simply, this is an over-engineered machine learning project.
 
+![Data Engineering Diagram](diagram.png)
+
 ---
 
 Include stocks data from:
