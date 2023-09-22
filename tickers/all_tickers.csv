@@ -1,0 +1,159 @@
+Ticker,Code,Name
+FOXA,GOOG/NASDAQ_FOXA,21st Century Fox Class A
+ATVI,GOOG/NASDAQ_ATVI,Activision Blizzard Inc
+ADBE,GOOG/NASDAQ_ADBE,Adobe Systems Inc
+AKAM,GOOG/NASDAQ_AKAM,Akamai Technologies Inc
+ALTR,GOOG/NASDAQ_ALTR,Altera Corp
+AMZN,GOOG/NASDAQ_AMZN,Amazon.com Inc
+AMGN,GOOG/NASDAQ_AMGN,Amgen Inc
+ADI,GOOG/NASDAQ_ADI,Analog Devices Inc
+AAPL,GOOG/NASDAQ_AAPL,Apple Inc
+AMAT,GOOG/NASDAQ_AMAT,Applied Materials Inc
+ADSK,GOOG/NASDAQ_ADSK,Autodesk Inc
+ADP,GOOG/NASDAQ_ADP,Automatic Data Processing Inc
+AVGO,GOOG/NASDAQ_AVGO,Avago Technologies Ltd
+BIDU,GOOG/NASDAQ_BIDU,Baidu Inc
+BIIB,GOOG/NASDAQ_BIIB,Biogen Idec Inc
+CHRW,GOOG/NASDAQ_CHRW,C.H. Robinson Worldwide Inc
+CHTR,GOOG/NASDAQ_CHTR,Charter Communications Inc
+CHKP,GOOG/NASDAQ_CHKP,Check Point Software Technologies Ltd
+CSCO,GOOG/NASDAQ_CSCO,Cisco Systems Inc
+CTSH,GOOG/NASDAQ_CTSH,Cognizant Technology Solutions Corp
+CMCSA,GOOG/NASDAQ_CMCSA,Comcast Corp
+COST,GOOG/NASDAQ_COST,Costco Wholesale Corp
+DISH,GOOG/NASDAQ_DISH,Dish Network Corp
+DLTR,GOOG/NASDAQ_DLTR,Dollar Tree Inc
+EBAY,GOOG/NASDAQ_EBAY,eBay Inc
+EQIX,GOOG/NASDAQ_EQIX,Equinix Inc
+EXPE,GOOG/NASDAQ_EXPE,Expedia Inc
+EXPD,GOOG/NASDAQ_EXPD,Expeditors International of Washington Inc
+FFIV,GOOG/NASDAQ_FFIV,F5 Networks Inc
+FAST,GOOG/NASDAQ_FAST,Fastenal Co
+GRMN,GOOG/NASDAQ_GRMN,Garmin Ltd
+GILD,GOOG/NASDAQ_GILD,Gilead Sciences Inc
+GOOGL,GOOG/NASDAQ_GOOGL,Google Inc CL A Cmn
+GOOG,GOOG/NASDAQ_GOOG,Google Inc CL C Cap
+HSIC,GOOG/NASDAQ_HSIC,Henry Schein Inc
+ILMN,GOOG/NASDAQ_ILMN,Illumina Inc
+INTC,GOOG/NASDAQ_INTC,Intel Corp
+INTU,GOOG/NASDAQ_INTU,Intuit Inc
+ISRG,GOOG/NASDAQ_ISRG,Intuitive Surgical Inc
+KLAC,GOOG/NASDAQ_KLAC,KLA-Tencor Corp
+LBTYA,GOOG/NASDAQ_LBTYA,Liberty Global PLC
+MAR,GOOG/NASDAQ_MAR,Marriott International Class A
+MAT,GOOG/NASDAQ_MAT,Mattel Inc
+MU,GOOG/NASDAQ_MU,Micron Technology Inc
+MSFT,GOOG/NASDAQ_MSFT,Microsoft Corp
+MDLZ,GOOG/NASDAQ_MDLZ,Mondelez International Inc
+MNST,GOOG/NASDAQ_MNST,Monster Beverage Corp
+NTAP,GOOG/NASDAQ_NTAP,NetApp Inc
+NFLX,GOOG/NASDAQ_NFLX,Netflix Inc
+NVDA,GOOG/NASDAQ_NVDA,NVIDIA Corp
+NXPI,GOOG/NASDAQ_NXPI,NXP Semiconductors
+ORLY,GOOG/NASDAQ_ORLY,O'Reilly Automotive Inc
+PCAR,GOOG/NASDAQ_PCAR,PACCAR Inc
+PAYX,GOOG/NASDAQ_PAYX,Paychex Inc
+QCOM,GOOG/NASDAQ_QCOM,Qualcomm Inc
+REGN,GOOG/NASDAQ_REGN,Regeneron Pharmaceuticals Inc
+ROST,GOOG/NASDAQ_ROST,Ross Stores Inc
+SBAC,GOOG/NASDAQ_SBAC,SBA Communications Corp
+STX,GOOG/NASDAQ_STX,Seagate Technology PLC
+SIRI,GOOG/NASDAQ_SIRI,Sirius XM Radio Inc
+SBUX,GOOG/NASDAQ_SBUX,Starbucks Corp
+SRCL,GOOG/NASDAQ_SRCL,Stericycle Inc
+TSLA,GOOG/NASDAQ_TSLA,Tesla Motors Inc
+TXN,GOOG/NASDAQ_TXN,Texas Instruments Inc
+TSCO,GOOG/NASDAQ_TSCO,Tractor Supply Co
+TRIP,GOOG/NASDAQ_TRIP,TripAdvisor Inc
+VRTX,GOOG/NASDAQ_VRTX,Vertex Pharmaceuticals Inc
+VOD,GOOG/NASDAQ_VOD,Vodafone Group PLC
+WDC,GOOG/NASDAQ_WDC,Western Digital Corp
+WYNN,GOOG/NASDAQ_WYNN,Wynn Resorts Ltd
+MMM,GOOG/NYSE_MMM,3M Co.
+ABT,GOOG/NYSE_ABT,Abbott Laboratories
+ACN,GOOG/NYSE_ACN,Accenture PLC Cl A
+MO,GOOG/NYSE_MO,Altria Group Inc.
+AXP,GOOG/NYSE_AXP,American Express Co.
+AIG,GOOG/NYSE_AIG,American International Group Inc.
+APA,GOOG/NYSE_APA,Apache Corp.
+T,GOOG/NYSE_T,AT&T Inc.
+BAC,GOOG/NYSE_BAC,Bank of America Corp.
+BK,GOOG/NYSE_BK,Bank of New York Mellon Corp.
+BAX,GOOG/NYSE_BAX,Baxter International Inc.
+BA,GOOG/NYSE_BA,Boeing Co.
+BMY,GOOG/NYSE_BMY,Bristol-Myers Squibb Co.
+CAT,GOOG/NYSE_CAT,Caterpillar Inc.
+CVX,GOOG/NYSE_CVX,Chevron Corp.
+C,GOOG/NYSE_C,Citigroup Inc.
+KO,GOOG/NYSE_KO,Coca-Cola Co.
+CL,GOOG/NYSE_CL,Colgate-Palmolive Co.
+COP,GOOG/NYSE_COP,ConocoPhillips
+GLW,GOOG/NYSE_GLW,Corning Inc.
+CVS,GOOG/NYSE_CVS,CVS Caremark Corp.
+DHR,GOOG/NYSE_DHR,Danaher Corp.
+DE,GOOG/NYSE_DE,Deere & Co.
+DVN,GOOG/NYSE_DVN,Devon Energy Corp.
+D,GOOG/NYSE_D,Dominion Resources Inc. (Virginia)
+DOW,GOOG/NYSE_DOW,Dow Chemical Co.
+DUK,GOOG/NYSE_DUK,Duke Energy Corp.
+DD,GOOG/NYSE_DD,E.I. DuPont de Nemours & Co.
+LLY,GOOG/NYSE_LLY,Eli Lilly & Co.
+EMC,GOOG/NYSE_EMC,EMC Corp.
+EMR,GOOG/NYSE_EMR,Emerson Electric Co.
+EOG,GOOG/NYSE_EOG,EOG Resources Inc.
+EXC,GOOG/NYSE_EXC,Exelon Corp.
+XOM,GOOG/NYSE_XOM,Exxon Mobil Corp.
+FDX,GOOG/NYSE_FDX,FedEx Corp.
+F,GOOG/NYSE_F,Ford Motor Co.
+BEN,GOOG/NYSE_BEN,Franklin Resources Inc.
+FCX,GOOG/NYSE_FCX,Freeport-McMoRan Copper & Gold Inc.
+GD,GOOG/NYSE_GD,General Dynamics Corp.
+GE,GOOG/NYSE_GE,General Electric Co.
+GIS,GOOG/NYSE_GIS,General Mills Inc.
+GM,GOOG/NYSE_GM,General Motors Co.
+GS,GOOG/NYSE_GS,Goldman Sachs Group Inc.
+HAL,GOOG/NYSE_HAL,Halliburton Co.
+HPQ,GOOG/NYSE_HPQ,Hewlett-Packard Co.
+HD,GOOG/NYSE_HD,Home Depot Inc.
+HON,GOOG/NYSE_HON,Honeywell International Inc.
+ITW,GOOG/NYSE_ITW,Illinois Tool Works Inc.
+IBM,GOOG/NYSE_IBM,International Business Machines Corp.
+JNJ,GOOG/NYSE_JNJ,Johnson & Johnson
+JPM,GOOG/NYSE_JPM,JPMorgan Chase & Co.
+KMB,GOOG/NYSE_KMB,Kimberly-Clark Corp.
+LVS,GOOG/NYSE_LVS,Las Vegas Sands Corp.
+LMT,GOOG/NYSE_LMT,Lockheed Martin Corp.
+LOW,GOOG/NYSE_LOW,Lowe's Cos.
+MA,GOOG/NYSE_MA,MasterCard Inc. Cl A
+MCD,GOOG/NYSE_MCD,McDonald's Corp.
+MDT,GOOG/NYSE_MDT,Medtronic Inc.
+MRK,GOOG/NYSE_MRK,Merck & Co. Inc.
+MET,GOOG/NYSE_MET,MetLife Inc.
+MS,GOOG/NYSE_MS,Morgan Stanley
+NOV,GOOG/NYSE_NOV,National Oilwell Varco Inc.
+NEM,GOOG/NYSE_NEM,Newmont Mining Corp.
+NKE,GOOG/NYSE_NKE,Nike Inc. Cl B
+OXY,GOOG/NYSE_OXY,Occidental Petroleum Corp.
+PEP,GOOG/NYSE_PEP,PepsiCo Inc.
+PFE,GOOG/NYSE_PFE,Pfizer Inc.
+PM,GOOG/NYSE_PM,Philip Morris International Inc.
+PNC,GOOG/NYSE_PNC,PNC Financial Services Group Inc.
+PX,GOOG/NYSE_PX,Praxair Inc.
+PG,GOOG/NYSE_PG,Procter & Gamble Co.
+PRU,GOOG/NYSE_PRU,Prudential Financial Inc.
+SLB,GOOG/NYSE_SLB,Schlumberger Ltd.
+SPG,GOOG/NYSE_SPG,Simon Property Group Inc.
+SO,GOOG/NYSE_SO,Southern Co.
+SCCO,GOOG/NYSE_SCCO,Southern Copper Corp.
+TGT,GOOG/NYSE_TGT,Target Corp.
+TRV,GOOG/NYSE_TRV,Travelers Cos. Inc.
+USB,GOOG/NYSE_USB,U.S. Bancorp
+UNP,GOOG/NYSE_UNP,Union Pacific Corp.
+UPS,GOOG/NYSE_UPS,United Parcel Service Inc. Cl B
+UNH,GOOG/NYSE_UNH,UnitedHealth Group Inc.
+VZ,GOOG/NYSE_VZ,Verizon Communications Inc.
+V,GOOG/NYSE_V,VISA Inc. Cl A
+WMT,GOOG/NYSE_WMT,Wal-Mart Stores Inc.
+DIS,GOOG/NYSE_DIS,Walt Disney Co.
+WFC,GOOG/NYSE_WFC,Wells Fargo & Co.
+YUM,GOOG/NYSE_YUM,Yum! Brands Inc.

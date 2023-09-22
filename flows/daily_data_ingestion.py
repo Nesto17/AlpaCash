@@ -4,7 +4,7 @@ import boto3
 import pyarrow
 
 from prefect import flow, task
-f
+from prefect.blocks.system import Secret
 
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.live import StockDataStream
