@@ -3,7 +3,7 @@ html {
 }
 #root {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     padding-left: 80px;
     padding-right: 80px;
     padding-top: 80px;
@@ -11,23 +11,20 @@ html {
 
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: stretch;
     justify-content: space-between;
 }
 .content {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: stretch;
+    justify-content: start;
 
-    height: 100%;
-    padding-top: 80px;
+    max-height: 100vh;
 }
 .content-text {
     display: flex;
     flex-direction: column;
-}
-.content-input {
-    margin-top: 40px;
 }
 .content-input_interact {
     display: flex;
@@ -35,14 +32,42 @@ html {
     align-items: center;
     justify-content: start;
 }
-
+.content-extra {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
 .plot-container {
     width: 50vw;
-    height: 100%;
+    max-height: 100vh;
     justify-self: center;
+
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 .plot {
     border-style: none;
     width: 100%;
     height: 100%;
+}
+
+@media (max-width: 992px) {
+    #root {
+        flex-direction: column;
+        align-items: center;
+        justify-content: initial;
+
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 0px;
+    }
+    .plot-container {
+        width: 100vw;
+        padding-top: 80px;
+    }
+    .plot {
+        height: 500px;
+    }
 }

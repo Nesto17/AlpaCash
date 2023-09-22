@@ -1,22 +1,18 @@
-
 ![Data Engineering Diagram](diagram.png)
 
 ---
 
 Include stocks data from:
 
-1. S&P 500
+1. NYSE
 2. NASDAQ 100
+
+Leveraged free trading APIs from https://alpaca.markets/
 
 ---
 
 Roadmap:
 
-1. Orchestrate batch data processing from API to S3 in Prefect
-2. Store 6 years worth of historical data in S3
-3. Deploy Prefect in Docker/Kubernetes infra
-4. Run transformation queries in Redshift and dbt
-5. Pull transformed data from Redshift, and process ML training and evaluation. Save the model to S3
-6. Orchestrate ML operations in Prefect
-7. Create a Flask app to showcase forecasting
-8. Deploy the app
+1. Implement elements of seasonality, trend, and shock.
+2. Moving to Lambda architecture by integrating speed and batch layers.
+3. Convert AWS implementation to Infra-as-Code using Terraform for more clarity and recproducibility.
