@@ -45,6 +45,7 @@ html {
     flex-direction: column;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .plot {
     border-style: none;

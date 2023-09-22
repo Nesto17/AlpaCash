@@ -1,9 +1,7 @@
 import { useState } from 'react';
+import { Ripples } from '@uiball/loaders';
 import { Form, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import './App.css';
-
-const BASE_URL = 'http://127.0.0.1:5000/';
 
 function App() {
     const [ticker, setTicker] = useState('');
@@ -17,7 +15,7 @@ function App() {
         setError('');
 
         axios
-            .get(`${BASE_URL}forecast/${ticker}`)
+            .get(`${process.env.REACT_APP_API_URL}forecast/${ticker}`)
             .then((res) => {
                 setLastInputtedTicker(ticker);
                 setPlotHtml(res.data.html);
@@ -65,7 +63,7 @@ function App() {
                     )}
                 </Form>
                 <div className="mt-5 content-extra">
-                    <p className="content-extra-desc">Data is updated daily at 11.15 AM UTC+0</p>
+                    <p className="content-extra-desc">Stock data is updated daily at 11.15 AM UTC+0</p>
                     <p className="mt-1 content-extra-github">
                         GitHub, roadmap, and more details can be found{' '}
                         <a
@@ -78,14 +76,20 @@ function App() {
                     </p>
                 </div>
             </div>
-            <div className="plot-container">
-                {lastInputtedTicker !== '' && (
-                    <h1 className="fw-bold fst-italic plot-title">
-                        {lastInputtedTicker.toUpperCase()} 1-Year Forecast
-                    </h1>
-                )}
-                <iframe title="a" className="pt-2 plot" srcDoc={plotHtml}></iframe>
-            </div>
+            {loading ? (
+                <div className="plot-loading plot-container">
+                    <Ripples size={120} speed={4} color="#231F20" />
+                </div>
+            ) : (
+                <div className="plot-container">
+                    {lastInputtedTicker !== '' && (
+                        <h1 className="fw-bold fst-italic plot-title">
+                            {lastInputtedTicker.toUpperCase()} 1-Year Forecast
+                        </h1>
+                    )}
+                    <iframe title="a" className="pt-2 plot" srcDoc={plotHtml}></iframe>
+                </div>
+            )}
         </>
     );
 }
