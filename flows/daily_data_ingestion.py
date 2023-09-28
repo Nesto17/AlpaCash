@@ -86,13 +86,6 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 
 
 @task(log_prints=True)
-def parquetize_and_write(df: pd.DataFrame) -> Path:
-    path = Path(f"../data/stocks.parquet")
-    df.to_parquet(path, engine = "pyarrow", compression = "gzip")
-    return path
-
-
-@task(log_prints=True)
 def load(df: pd.DataFrame) -> None:
     glue_db_name = "alpaca_stocks_database"
     glue_table_name = f"stocks_table_{datetime.now().year}_{datetime.now().month}"
@@ -124,4 +117,4 @@ def daily_data_ingestion_flow():
 
 
 if __name__ == "__main__":
-    daily_data_ingestion_flow.serve(name = "Daily Ingestion Deployment", cron = "5 4 * * 1-5")
+    daily_data_ingestion_flow.serve(name = "Daily Ingestion Deployment (Docker)", cron = "*/5 * * * *")
